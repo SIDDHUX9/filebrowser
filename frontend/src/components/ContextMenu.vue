@@ -90,14 +90,14 @@
       />
       <action
         v-if="showCopy"
-        icon="content_copy"
+        icon="file_copy"
         :label="$t('buttons.copyFile')"
         @action="showCopyPrompt"
       />
       <action
         v-if="showCopyPath"
-        icon="link"
-        :label="`${$t('buttons.copyToClipboard')} (${$t('general.path', { suffix: '' })})`"
+        icon="copy_all"
+        :label="$t('buttons.copyPath')"
         @action="copyPathToClipboard"
       />
       <action
@@ -295,7 +295,7 @@ export default {
     },
     showCopyPath() {
       if (this.showLimitedOptions) return false;
-      return !this.showCreate && this.selectedCount == 1;
+      return !this.showCreate && this.selectedCount == 1 && !!state.user?.showCopyPath;
     },
     showOpenParentFolder() {
       return !this.showCreate && this.selectedCount == 1 && (this.isSearchActive || this.showLimitedOptions);
